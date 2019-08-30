@@ -14,7 +14,7 @@ int main()
 	list<thread> lt;
 
 	for (i=0; i<2; ++i) {
-		lt.push_back(move(*(new thread(sl))));
+		lt.push_back( move(*new thread(sl)) );
 		lt.back().join();
 	}
 }
