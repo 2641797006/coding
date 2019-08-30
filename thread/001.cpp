@@ -1,4 +1,5 @@
 #include <iostream>
+#include <list>
 #include <thread>
 using namespace std;
 
@@ -9,6 +10,13 @@ void sl()
 
 int main()
 {
-	thread t1(sl);// t2(sl);
+	int i;
+	list<thread> lt;
+
+	for (i=0; i<10; ++i) {
+		lt.push_back(*(new thread(sl)));
+		lt.back().join();
+	}
+
 }
 
