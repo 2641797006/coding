@@ -11,11 +11,15 @@ void sl()
 int main()
 {
 	int i;
+	thread t;
 	list<thread> lt;
 
-	for (i=0; i<2; ++i) {
-		lt.push_back( move(*new thread(sl)) );
-		lt.back().join();
+	for (i=0; i<100; ++i) {
+		new(&t) thread(sl);
+		lt.push_back( move(t) );
 	}
+
+	for (auto &x : lt)
+		x.join();
 }
 

@@ -13,13 +13,15 @@ int main()
 	int i;
 
 	thread *p = new thread(sl), t;
+	list<thread> lt;
 
-	t = move(*p);
+	lt.push_back( move(*p) );
 
 	delete p;
 
 	cout<< "delete end" <<endl;
 
-	t.join();
+	lt.back().join();
+
 }
 
